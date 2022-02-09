@@ -1,0 +1,42 @@
+name: Build and Test (Windows)
+on: 
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+    
+  # Allows us to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  
+env:
+  CONFIGURATION: Debug
+  DOTNET_CORE_VERSION: 6.0.x
+  WORKING_DIRECTORY: AutoDiscovery\src\
+  
+jobs:
+  build:
+    name: Restore, Build and Test
+    runs-on: windows-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Setup .NET 6
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ env.DOTNET_CORE_VERSION }}
+        
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v1.0.2
+      
+    - name: Restore (Solution)
+      run: msbuild /t:restore "${{ env.WORKING_DIRECTORY }}" /property:Configuration=${{ env.CONFIGURATION }}
+      
+    - name: Build (Solution)
+      run: msbuild /t:build "${{ env.WORKING_DIRECTORY }}" /property:Configuration=${{ env.CONFIGURATION }} /p:RestorePackages=false
+      
+    - name: Test (Solution)
+      run: dotnet test "${{ env.WORKING_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --no-build
+      
