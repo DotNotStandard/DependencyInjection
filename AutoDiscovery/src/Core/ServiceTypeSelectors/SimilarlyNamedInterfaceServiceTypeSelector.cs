@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+ * Copyright © 2022 DotNotStandard. All rights reserved.
+ * 
+ * See the LICENSE file in the root of the repo for licensing details.
+ * 
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -6,13 +12,20 @@ using System.Text;
 
 namespace DotNotStandard.DependencyInjection.AutoDiscovery.ServiceTypeSelectors
 {
-	internal class SimilarlyNamedInterfaceServiceSelector : IServiceTypeSelector
+	/// <summary>
+	/// Service type selector for use when types are registered against an interface
+	/// whose name can be calculated from the type name with limited modification
+	internal class SimilarlyNamedInterfaceServiceTypeSelector : IServiceTypeSelector
 	{
+		
+		/// <inheritdoc cref="IServiceTypeSelector"/>
 		public Type GetServiceType(Type implementingType)
 		{
 			string desiredInterfaceName;
 			Type desiredInterfaceType;
 			TypeInfo typeInfo;
+
+			if (implementingType is null) return null;
 
 			// Determine the name of the interface we are expecting to be implemented
 			desiredInterfaceName = $"I{implementingType.Name}";

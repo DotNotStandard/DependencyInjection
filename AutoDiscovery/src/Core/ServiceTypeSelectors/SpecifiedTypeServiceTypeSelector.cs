@@ -10,17 +10,26 @@ using System.Text;
 
 namespace DotNotStandard.DependencyInjection.AutoDiscovery.ServiceTypeSelectors
 {
-
 	/// <summary>
-	/// Service type selector for use when types are registered as themselves - i.e. 
-	/// where the service type and the implementing type are the same
-	/// </summary>
-	internal class SelfServingServiceTypeSelector : IServiceTypeSelector
+	/// Service type selector for use when types are registered against a specific
+	/// type that was requested by the calling developer
+	internal class SpecifiedTypeServiceTypeSelector : IServiceTypeSelector
 	{
+		private readonly Type _serviceType;
+
+		#region Constructors
+
+		public SpecifiedTypeServiceTypeSelector(Type serviceType)
+		{
+			_serviceType = serviceType;
+		}
+
+		#endregion
+
 		/// <inheritdoc cref="IServiceTypeSelector"/>
 		public Type GetServiceType(Type implementingType)
 		{
-			return implementingType;
+			return _serviceType;
 		}
 	}
 }

@@ -4,21 +4,17 @@
  * See the LICENSE file in the root of the repo for licensing details.
  * 
  */
+using DotNotStandard.DependencyInjection.AutoDiscovery.Registrars;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace DotNotStandard.DependencyInjection.AutoDiscovery.Registrars
+namespace DotNotStandard.DependencyInjection.AutoDiscovery.UnitTests.Fakes
 {
-
-	/// <summary>
-	/// Registrar that registers types with a scoped lifetime
-	/// </summary>
-	internal class ScopedRegistrar : IRegistrar
+	internal class FakeRegistrar : IRegistrar
 	{
-		/// <inheritdoc cref="IRegistrar"/>
 		public void Register(IServiceCollection services, Type serviceType, Type implementingType)
 		{
-			services.AddScoped(serviceType, implementingType);
+			// No behaviour required
 		}
 	}
 }
