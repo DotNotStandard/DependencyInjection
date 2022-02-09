@@ -60,7 +60,7 @@ what you prefer.
 include rules; a type matching any single include rule is included.
 
 `WhereNot()` is used to specify types that are to be excluded. Calling it multiple times adds multiple 
-include rules; a type matching any single exclude rule is excluded.
+exclude rules; a type matching any single exclude rule is excluded.
 
 `ClearDefaultExclusions()` can be used in very advanced scenarios. By default, two exclusions are 
 applied that will be appropriate in almost all circumstances - these assume that you don't want to 

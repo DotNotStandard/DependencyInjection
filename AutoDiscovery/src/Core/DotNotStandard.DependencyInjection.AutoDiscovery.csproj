@@ -13,7 +13,7 @@
     <PackageProjectUrl>https://github.com/DotNotStandard/DependencyInjection</PackageProjectUrl>
     <RepositoryUrl>https://github.com/DotNotStandard/DependencyInjection</RepositoryUrl>
     <RepositoryType>Github</RepositoryType>
-    <PackageTags>Dependency Injection, DI, Auto Registration, Discovery</PackageTags>
+    <PackageTags>Dependency Injection, DI, Auto Registration, Discovery, Convention over Configuration</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
