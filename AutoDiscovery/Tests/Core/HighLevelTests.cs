@@ -33,7 +33,7 @@ namespace DotNotStandard.DependencyInjection.AutoDiscovery.UnitTests
 			// Act
 			services.DiscoverTypes()
 				.Where(new NameEndsWithFilter("ViewModel"))
-				.AsTheirOwnImplementers()
+				.AsThemselves()
 				.Register();
 			actual = services.Count();
 
@@ -52,7 +52,7 @@ namespace DotNotStandard.DependencyInjection.AutoDiscovery.UnitTests
 			// Act
 			services.DiscoverTypes()
 				.Where(new NameEndsWithFilter("ViewModel"))
-				.AsTheirOwnImplementers()
+				.AsThemselves()
 				.Register();
 			actual = services.First()?.ServiceType;
 
@@ -72,7 +72,7 @@ namespace DotNotStandard.DependencyInjection.AutoDiscovery.UnitTests
 			services.DiscoverTypes()
 				.Where(new NameEndsWithFilter("Repository"))
 				.AsSimilarlyNamedInterface()
-				.IgnoringIfNoServiceTypeIsDiscovered()
+				.IgnoringTypeIfNoServiceTypeIsDiscovered()
 				.Register();
 			actual = services.Count();
 
@@ -92,7 +92,7 @@ namespace DotNotStandard.DependencyInjection.AutoDiscovery.UnitTests
 			services.DiscoverTypes()
 				.Where(new NameEndsWithFilter("Repository"))
 				.AsSimilarlyNamedInterface()
-				.IgnoringIfNoServiceTypeIsDiscovered()
+				.IgnoringTypeIfNoServiceTypeIsDiscovered()
 				.Register();
 
 			actual = services.First()?.ServiceType;
@@ -142,7 +142,7 @@ namespace DotNotStandard.DependencyInjection.AutoDiscovery.UnitTests
 			services.DiscoverTypes()
 				.Where(new NameEndsWithFilter("Repository"))
 				.AsSimilarlyNamedInterfaceLessPrefix("Fake")
-				.IgnoringIfNoServiceTypeIsDiscovered()
+				.IgnoringTypeIfNoServiceTypeIsDiscovered()
 				.Register();
 			actual = services.Count();
 
@@ -163,7 +163,7 @@ namespace DotNotStandard.DependencyInjection.AutoDiscovery.UnitTests
 			services.DiscoverTypes()
 				.Where(new NameEndsWithFilter("Repository"))
 				.AsSimilarlyNamedInterfaceLessPrefix("Fake")
-				.IgnoringIfNoServiceTypeIsDiscovered()
+				.IgnoringTypeIfNoServiceTypeIsDiscovered()
 				.Register();
 			actual = services.First()?.ServiceType;
 

@@ -4,15 +4,15 @@
  * See the LICENSE file in the root of the repo for licensing details.
  * 
  */
+using DotNotStandard.DependencyInjection.AutoDiscovery;
 using DotNotStandard.DependencyInjection.AutoDiscovery.Filters;
 using DotNotStandard.DependencyInjection.AutoDiscovery.Registrars;
 using DotNotStandard.DependencyInjection.AutoDiscovery.ServiceTypeSelectors;
-using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace DotNotStandard.DependencyInjection.AutoDiscovery
+namespace Microsoft.Extensions.DependencyInjection
 {
 
 	/// <summary>
@@ -20,6 +20,7 @@ namespace DotNotStandard.DependencyInjection.AutoDiscovery
 	/// </summary>
 	public class TypeDiscoveryOptionsBuilder
 	{
+		private int defaultExclusionsCount = 0;
 		private readonly IServiceCollection _services;
 		private readonly TypeDiscoveryOptions _options = new TypeDiscoveryOptions();
 
@@ -36,6 +37,7 @@ namespace DotNotStandard.DependencyInjection.AutoDiscovery
 			// Add default exclusions
 			_options.Exclusions.Add(new ExpressionFilter(t => t.IsAbstract));
 			_options.Exclusions.Add(new ExpressionFilter(t => t.IsInterface));
+			defaultExclusionsCount = _options.Exclusions.Count;
 		}
 
 		#endregion
@@ -102,6 +104,21 @@ namespace DotNotStandard.DependencyInjection.AutoDiscovery
 			return this;
 		}
 
+		/// <summary>
+		/// Remove the default exclusions that are applied - IsAbstract and IsInterface
+		/// </summary>
+		/// <returns>The TypeDiscoveryBuilder instance, to support method chaining</returns>
+		public TypeDiscoveryOptionsBuilder ClearDefaultExclusions()
+		{
+			while (defaultExclusionsCount > 0)
+			{
+				_options.Exclusions.RemoveAt(0);
+				defaultExclusionsCount--;
+			}
+
+			return this;
+		}
+
 		#endregion
 
 		#region Service Type Identification
@@ -115,7 +132,7 @@ namespace DotNotStandard.DependencyInjection.AutoDiscovery
 		/// will be registered. As a result, calling this is optional
 		/// </remarks>
 		/// <returns>The TypeDiscoveryBuilder instance, to support method chaining</returns>
-		public TypeDiscoveryOptionsBuilder AsTheirOwnImplementers()
+		public TypeDiscoveryOptionsBuilder AsThemselves()
 		{
 			_options.ServiceTypeSelector = new SelfServingServiceTypeSelector();
 
@@ -238,7 +255,7 @@ namespace DotNotStandard.DependencyInjection.AutoDiscovery
 		/// avoiding the throwing of an exception that would happen by default
 		/// </summary>
 		/// <returns>The TypeDiscoveryBuilder instance, to support method chaining</returns>
-		public TypeDiscoveryOptionsBuilder IgnoringIfNoServiceTypeIsDiscovered()
+		public TypeDiscoveryOptionsBuilder IgnoringTypeIfNoServiceTypeIsDiscovered()
 		{
 			_options.ThrowIfNoServiceTypeIsDiscovered = false;
 
