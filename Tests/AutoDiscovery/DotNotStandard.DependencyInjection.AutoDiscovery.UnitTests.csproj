@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Core\DotNotStandard.DependencyInjection.AutoDiscovery.csproj" />
+    <ProjectReference Include="..\..\src\AutoDiscovery\DotNotStandard.DependencyInjection.AutoDiscovery.csproj" />
   </ItemGroup>
 
 </Project>
