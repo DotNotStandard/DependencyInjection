@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNotStandard.DependencyInjection.AutoDiscovery", "Core\DotNotStandard.DependencyInjection.AutoDiscovery.csproj", "{1EC804F2-5229-4BE3-8373-AE3127B401B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNotStandard.DependencyInjection.AutoDiscovery", "AutoDiscovery\DotNotStandard.DependencyInjection.AutoDiscovery.csproj", "{1EC804F2-5229-4BE3-8373-AE3127B401B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNotStandard.DependencyInjection.AutoDiscovery.UnitTests", "..\Tests\Core\DotNotStandard.DependencyInjection.AutoDiscovery.UnitTests.csproj", "{730816F4-A3F3-433A-8585-02AA35684F96}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNotStandard.DependencyInjection.AutoDiscovery.UnitTests", "..\Tests\AutoDiscovery\DotNotStandard.DependencyInjection.AutoDiscovery.UnitTests.csproj", "{730816F4-A3F3-433A-8585-02AA35684F96}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
